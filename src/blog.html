@@ -1,0 +1,123 @@
+<html>
+<head>
+    <link rel="stylesheet" href="library/css/style.css">
+</head>
+<body class="">
+    <!-- Header -->
+    <div class="container">
+        <div class="d-flex justify-content-end custom-list">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="work.html">Works</a></li>
+                <li class="list-inline-item"><a href="blog.html">Blog</a></li>
+                <li class="list-inline-item">Contact</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="my-5">
+            <h2 class="card-title">Blog</h5>
+        </div>
+        <div class="my-5">
+            <div class="card border-0">
+                <div class="">
+                    <h3 class="card-title">UI Interactions of the week</h3>
+                    <div class="d-flex mt-4 mb-4">
+                        <span class="">
+                            <span class="fs-5 mx-2 "> 12 Feb 2019 </span>
+                            <span class="fs-5 mx-2">|</span>
+                        </span>
+                        <span class="text-secondary fs-5 mx-4">Express, Handlebars</span>
+                    </div>
+                    <p class="card-text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+                </div>
+            </div>
+            <div class="border-bottom my-4"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="postContainer"></div>
+    
+        <button id="addPostButton" class="btn btn-primary">Add new post</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="col justify-content-center align-items-center d-flex my-5">
+        <div>
+            <div class="d-flex justify-content-center">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <img src="library/img/fb.png" alt="...">
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="library/img/insta.png" alt="...">
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="library/img/Group.png" alt="...">
+                    </li>
+                    <li class="list-inline-item">
+                        <img src="library/img/Linkedin.png" alt="...">
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex justify-content-center">
+                <p>Copyright ©2020 All rights reserved </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const postsData = [
+        {
+            title: 'UI Interactions of the week',
+            date: '12 Feb 2019',
+            tags: 'Express, Handlebars',
+            content: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'
+        },
+    ];
+
+    function createPostHTML(post) {
+        const postHTML = `
+            <div class="my-5">
+                <div class="card border-0">
+                    <div class="">
+                        <h3 class="card-title">${post.title}</h3>
+                        <div class="d-flex mt-4 mb-4">
+                            <span class="">
+                                <span class="fs-5 mx-2">${post.date}</span>
+                                <span class="fs-5 mx-2">|</span>
+                            </span>
+                            <span class="text-secondary fs-5 mx-4">${post.tags}</span>
+                        </div>
+                        <p class="card-text">${post.content}</p>
+                    </div>
+                </div>
+                <div class="border-bottom my-4"></div>
+            </div>
+        `;
+        return postHTML;
+    }
+
+    function addPostToPage(post) {
+        const postContainer = document.getElementById('postContainer');
+        const postHTML = createPostHTML(post);
+        postContainer.innerHTML += postHTML;
+    }
+
+    postsData.forEach(function (post) {
+        addPostToPage(post);
+    });
+
+    for (let i = 0; i < 3; i++) {
+        addPostToPage(postsData[0]);
+    }
+
+    const addPostButton = document.getElementById('addPostButton');
+    addPostButton.addEventListener('click', function () {
+        addPostToPage(postsData[0]);
+    });
+</script>
+</html>
